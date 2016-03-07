@@ -6,7 +6,7 @@ import os
 import ConfigParser
 import argparse
 
-from enotipy._core import send_mail
+from enotipy import send_mail
 
 def getConfig():
     Config = ConfigParser.ConfigParser()
