@@ -29,8 +29,8 @@ def main(subject, text):
     # Get the configurations from cfg file
     conf = getConfig()
 
-    msg = send_mail(subject, text, conf['sourcemail'], conf['destinationmail'],
-                                 conf['password'], conf['smtp'])
+    msg = send_mail(subject, text, conf['sourcemail'], conf['password'],
+                                   conf['destinationmail'], conf['smtp'])
 
     print("From:\t{}\nTo:\t{}\n\n{}".format(msg['From'], msg['To'], msg.get_payload()))
 
