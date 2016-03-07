@@ -1,7 +1,12 @@
 #!/usr/bin/python
+"""
+enotipy:
+A handy Python script that sends email notifications.
+"""
 import os
 import smtplib # Import smtplib for the actual sending function
 import ConfigParser
+import argparse
 
 # Import the email modules we'll need
 from email.mime.text import MIMEText
@@ -23,17 +28,15 @@ def getConfig():
                 configs[option] = None
     return configs
 
-def main():
-    # Open a plain text file for reading.  For this example, assume that
-    # the text file contains only ASCII characters.
-    msg = MIMEText('Done!')
-
-    # Get the configurations
+def main(subject, text):
+    # Get the configurations from cfg file
     conf = getConfig()
 
-    # me == the sender's email address
-    # you == the recipient's email address
-    msg['Subject'] = 'Your experiment is over'
+    # Open a plain text file for reading.  For this example, assume that
+    # the text file contains only ASCII characters.
+    msg = MIMEText(text)
+
+    msg['Subject'] = subject
     msg['From'] = conf['sourcemail']
     msg['To'] = conf['destinationmail']
 
@@ -45,4 +48,23 @@ def main():
     s.quit()
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', metavar='{string}', type=str, default='auto',
+                   help="subject of the email")
+    parser.add_argument('-m', metavar='{string}', type=str, default='auto',
+                   help="body of the email")
+    args = parser.parse_args()
+
+    # Parse input arguments
+    if args.s == 'auto':
+        subject = "enotipy: Your experiment is over"
+    else:
+        subject = args.s
+
+    if args.m == 'auto':
+        tmp = "Email sent by enotipy"
+        text = "Done!\n"+"-"*len(tmp)+"\nhttp://repo"
+    else:
+        subject = args.s
+
+    main(subject, text)
