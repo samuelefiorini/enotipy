@@ -3,12 +3,10 @@
 enotipy: A handy Python script that sends email notifications.
 """
 import os
-import smtplib # Import smtplib for the actual sending function
 import ConfigParser
 import argparse
 
-# Import the email modules we'll need
-from email.mime.text import MIMEText
+from enotipy._core import send_mail
 
 def getConfig():
     Config = ConfigParser.ConfigParser()
@@ -31,20 +29,8 @@ def main(subject, text):
     # Get the configurations from cfg file
     conf = getConfig()
 
-    # Open a plain text file for reading.  For this example, assume that
-    # the text file contains only ASCII characters.
-    msg = MIMEText(text)
-
-    msg['Subject'] = subject
-    msg['From'] = conf['sourcemail']
-    msg['To'] = conf['destinationmail']
-
-    # Send the message via our own SMTP server, but don't include the
-    # envelope header.
-    s = smtplib.SMTP_SSL(conf['smtp'])
-    s.login(conf['sourcemail'], conf['password'])
-    s.sendmail(conf['sourcemail'], conf['destinationmail'], msg.as_string())
-    s.quit()
+    msg = send_mail(subject, text, conf['sourcemail'], conf['destinationmail'],
+                                 conf['password'], conf['smtp'])
 
     print("From:\t{}\nTo:\t{}\n\n{}".format(msg['From'], msg['To'], msg.get_payload()))
 
