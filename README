@@ -16,6 +16,7 @@ In a bash shell run:
   < command >; enoti.py
 
 --------------------------------------------------------------------------------
+
 To use only the notification utility:
 
 >>> from enotipy._core import send_mail
