@@ -1,7 +1,6 @@
 #!/usr/bin/python
 """
-enotipy:
-A handy Python script that sends email notifications.
+enotipy: A handy Python script that sends email notifications.
 """
 import os
 import smtplib # Import smtplib for the actual sending function
@@ -13,7 +12,7 @@ from email.mime.text import MIMEText
 
 def getConfig():
     Config = ConfigParser.ConfigParser()
-    Config.read(os.path.join(os.getcwd(),"enotipy.cfg"))
+    Config.read(os.path.join("/etc/enotipy","enotipy.cfg"))
     # Get the configurations as dictionary
     configs = {}
     for section in Config.sections():
@@ -49,22 +48,24 @@ def main(subject, text):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', metavar='{string}', type=str, default='auto',
+    parser.add_argument('-s', metavar='string', type=str, default='auto',
                    help="subject of the email")
-    parser.add_argument('-m', metavar='{string}', type=str, default='auto',
+    parser.add_argument('-m', metavar='string', type=str, default='auto',
                    help="body of the email")
     args = parser.parse_args()
 
     # Parse input arguments
     if args.s == 'auto':
-        subject = "enotipy: Your experiment is over"
+        subject = "enotipy: Your experiment is done"
     else:
         subject = args.s
 
     if args.m == 'auto':
-        tmp = "Email sent by enotipy"
-        text = "Done!\n"+"-"*len(tmp)+"\nhttp://repo"
+        body = "Done!"
+        tail = "Email sent by enotipy"
+        link = "https://samuele_fiorini@bitbucket.org/samuele_fiorini/enotipy.git"
+        text = "\n".join((body,"-"*len(link),tail,link))
     else:
-        subject = args.s
+        text = args.m
 
     main(subject, text)
