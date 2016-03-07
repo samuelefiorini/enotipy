@@ -9,3 +9,8 @@ Installation instructions:
     - fill the blank fields in enotipy.cfg
 
   2. python setup.py install (this may require sudo privileges)
+
+Usage:
+
+In a bash shell run:
+  < command >; enoti.py
