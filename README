@@ -13,7 +13,7 @@ Installation instructions:
 Usage:
 
 In a bash shell run:
-  < command >; enoti.py
+$ any_command; enoti.py
 
 --------------------------------------------------------------------------------
 
