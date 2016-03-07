@@ -34,7 +34,7 @@ setup(
     license = 'new BSD',
 
     packages=['enotipy'],
-    requires=['smtplib'],
+    requires=['smtplib','email.mime'],
     scripts=['enotipy/enoti.py'],
     data_files=[('/etc/enotipy', ['enotipy.cfg'])]
 )

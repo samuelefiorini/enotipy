@@ -46,6 +46,8 @@ def main(subject, text):
     s.sendmail(conf['sourcemail'], conf['destinationmail'], msg.as_string())
     s.quit()
 
+    print("From:\t{}\nTo:\t{}\n\n{}".format(msg['From'], msg['To'], msg.get_payload()))
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', metavar='string', type=str, default='auto',
