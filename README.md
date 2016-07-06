@@ -15,7 +15,7 @@ Installation instructions:
       ``vim enotipy.cfg``
 
   2. Install enotipy
-  3. 
+  
      ``python setup.py install``
 
 Usage: in a bash shell run
@@ -27,5 +27,4 @@ Usage: in a bash shell run
 To use only the notification utility:
 
 ``from enotipy import send_mail``
-
 ``send_mail(subject, text, source, password, destination)``
