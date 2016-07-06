@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # enotipy setup script
 
 from distutils.core import setup
@@ -11,12 +11,12 @@ setup(
     version=version,
 
     description=('A handy Python script that sends email notifications'),
-    long_description=open('README').read(),
+    long_description=open('README.md').read(),
     author='enotipy developers - SlipGURU',
     author_email='samuele.fiorini@dibris.unige.it',
     maintainer='Samuele Fiorini',
     maintainer_email='samuele.fiorini@dibris.unige.it',
-    url='https://samuele_fiorini@bitbucket.org/samuele_fiorini/enotipy.git',
+    url='https://github.com/samuelefiorini/enotipy.git',
 
     classifiers=[
         'Development Status :: Beta',

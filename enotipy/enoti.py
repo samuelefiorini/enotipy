@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 """
 enotipy: A handy Python script that sends email notifications.
 """
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     if args.m == 'auto':
         body = "Done!"
         tail = "Email sent by enotipy"
-        link = "https://samuele_fiorini@bitbucket.org/samuele_fiorini/enotipy.git"
+        link = "https://github.com/samuelefiorini/enotipy.git"
         text = "\n".join((body,"-"*len(link),tail,link))
     else:
         text = args.m
