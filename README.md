@@ -20,7 +20,7 @@ Installation instructions:
 
 Usage: in a bash shell run
 
-``any_command; enoti.py``
+``$ any_command_that_takes_a_lot; enoti.py``
 
 --------------------------------------------------------------------------------
 
